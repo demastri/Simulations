@@ -216,7 +216,7 @@ namespace GameOfLife
         protected int nbrStates;
 
         internal Dictionary<Location, int> curState;
-        private Dictionary<Location, int> changedStates;
+        internal Dictionary<Location, int> changedStates;
 
         internal Point GetRange(int dim)
         {
