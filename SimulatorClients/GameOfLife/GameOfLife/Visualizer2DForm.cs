@@ -35,7 +35,7 @@ namespace GameOfLife
                 Pen fPen = new Pen(foreColor);
                 Pen bPen = new Pen(backColor);
 
-                foreach (Location l in game.changedStates.Keys)
+                foreach (Location l in game.curState.Keys)
                 {
                     switch (game.geometry)
                     {
@@ -47,10 +47,10 @@ namespace GameOfLife
                         case 3:
                             bool up = (((l.index[0] % 2) + (l.index[1] % 2) % 2) == 1);
                             Point[] upArr = {  new Point( pix * l.index[0]+(pix-1)/2, pix * l.index[1]), 
-                                                 new Point( pix * l.index[0], pix * l.index[1]+pix-1), 
-                                                 new Point( pix * l.index[0]+pix-1, pix * l.index[1]+pix-1) };
-                            Point[] dnArr = {  new Point( pix * l.index[0], pix * l.index[1]), 
-                                                 new Point( pix * l.index[0] + pix - 1, pix * l.index[1]), 
+                                                 new Point( pix * l.index[0]-pix/2, pix * l.index[1]+pix-1), 
+                                                 new Point( pix * l.index[0]+pix/2+pix-1, pix * l.index[1]+pix-1) };
+                            Point[] dnArr = {  new Point( pix * l.index[0]-pix/2, pix * l.index[1]), 
+                                                 new Point( pix * l.index[0]+pix/2 + pix - 1, pix * l.index[1]), 
                                                  new Point( pix * l.index[0]+(pix-1)/2, pix * l.index[1]+pix-1) };
 
                             g.DrawPolygon(game.curState[l] == 1 ? fPen : bPen, up ? upArr : dnArr);
