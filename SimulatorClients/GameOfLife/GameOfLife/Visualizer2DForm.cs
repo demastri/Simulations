@@ -40,9 +40,10 @@ namespace GameOfLife
                     switch (game.geometry)
                     {
                         case 4:
-                            g.DrawRectangle(
-                                game.curState[l] == 1 ? fPen : bPen,
-                                pix * l.index[0], pix * l.index[1], pix - 1, pix - 1);
+                            if (game.curState[l] == 1)
+                                g.DrawRectangle(
+                                    game.curState[l] == 1 ? fPen : bPen,
+                                    pix * l.index[0], pix * l.index[1], pix - 1, pix - 1);
                             break;
                         case 3:
                             bool up = (((l.index[0] % 2) + (l.index[1] % 2) % 2) == 1);
@@ -53,7 +54,8 @@ namespace GameOfLife
                                                  new Point( pix * l.index[0]+pix/2 + pix - 1, pix * l.index[1]), 
                                                  new Point( pix * l.index[0]+(pix-1)/2, pix * l.index[1]+pix-1) };
 
-                            g.DrawPolygon(game.curState[l] == 1 ? fPen : bPen, up ? upArr : dnArr);
+                            if (game.curState[l] == 1)
+                                g.DrawPolygon(game.curState[l] == 1 ? fPen : bPen, up ? upArr : dnArr);
                             break;
                     }
                 }

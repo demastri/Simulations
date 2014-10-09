@@ -14,8 +14,8 @@ namespace GameOfLife
             Simulator.Simulator mySim;
             Graphic2DVisualizer graphicCanvas = new Graphic2DVisualizer();
 
-            //mySim = new GameOfLife.Life(2, 4, 2, "B3/S23", 1000, graphicCanvas);             // 2D, 2 states, square grid, Conway's original rules
-            mySim = new GameOfLife.Life(2, 3, 2, "B1/S2", 1000, graphicCanvas);             // 2D, 2 states, triangle, Conway's original rules
+            mySim = new GameOfLife.Life(2, 4, 2, "B3/S23", 1000, graphicCanvas);             // 2D, 2 states, square grid, Conway's original rules
+            //mySim = new GameOfLife.Life(2, 3, 2, "B1/S2", 1000, graphicCanvas);             // 2D, 2 states, triangle, Conway's original rules
             //mySim = new GameOfLife.Life(2, -4, 2, "B1/S2", 1000, graphicCanvas);             // 2D, 2 states, square/cross, interesting result for set 'xxx' on...
             //mySim = new GameOfLife.Life(1, 2, 2, "000:0 001:1 010:0 011:1 100:1 101:0 110:1 111:0", 1000000, null); // Wolfram's rule 90
 
