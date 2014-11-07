@@ -34,6 +34,7 @@ namespace GameOfLife
                 Graphics g = e.Graphics;
                 Pen fPen = new Pen(foreColor);
                 Pen bPen = new Pen(backColor);
+                Pen redPen = new Pen(Color.Red);
 
                 foreach (Location l in game.curState.Keys)
                 {
@@ -43,6 +44,10 @@ namespace GameOfLife
                             if (game.curState[l] == 1)
                                 g.DrawRectangle(
                                     game.curState[l] == 1 ? fPen : bPen,
+                                    pix * l.index[0], pix * l.index[1], pix - 1, pix - 1);
+                            if (game.curState[l] < 0)
+                                g.DrawRectangle(
+                                    redPen,
                                     pix * l.index[0], pix * l.index[1], pix - 1, pix - 1);
                             break;
                         case 3:
@@ -54,6 +59,8 @@ namespace GameOfLife
                                                  new Point( pix * l.index[0]+pix/2 + pix - 1, pix * l.index[1]), 
                                                  new Point( pix * l.index[0]+(pix-1)/2, pix * l.index[1]+pix-1) };
 
+                            if (game.curState[l] == 1)
+                                g.DrawPolygon(game.curState[l] == 1 ? fPen : bPen, up ? upArr : dnArr);
                             if (game.curState[l] == 1)
                                 g.DrawPolygon(game.curState[l] == 1 ? fPen : bPen, up ? upArr : dnArr);
                             break;

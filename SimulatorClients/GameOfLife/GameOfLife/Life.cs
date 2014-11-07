@@ -214,6 +214,7 @@ namespace GameOfLife
         private string refStartState;
         internal List<int> gridSizeLimit;    // MAXINT = unbounded...
         protected int nbrStates;
+        protected int trailStates = 3;
 
         internal Dictionary<Location, int> curState;
         internal Dictionary<Location, int> changedStates;
@@ -244,18 +245,27 @@ namespace GameOfLife
             string outString = "";
             List<Location> outLoc = thisLoc.FindAdjacent(geometry, gridWraps, gridSizeLimit);
             foreach (Location l in outLoc)
-                outString += GetState(l).ToString();
+                outString += (GetState(l) < 0 ? 0 : GetState(l)).ToString();
             return outString;
         }
 
         private int ApplyRules(Location thisState)
         {
-            int initState = GetState(thisState);
+            int initState = GetState(thisState) < 0 ? 0 : GetState(thisState) ;
             string stateStr = FindAdjacentString(thisState);
             Transition t = Transition.Find(tRules, initState, Convert.ToInt32(stateStr));
-            if (t != null)
-                return t.endState;
-            return initState;
+            int endState = (t == null ? initState : t.endState);
+            if (endState == 0)
+            {
+                if (initState > 0 && trailStates > 0)
+                    endState = -1;
+                else if (initState < 0)
+                    if (-initState < trailStates)
+                        endState = initState - 1;
+                    else 
+                        endState = 0;
+            }
+            return endState;
         }
         private void ApplyChanges()
         {
