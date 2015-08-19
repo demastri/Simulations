@@ -79,7 +79,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimulatorBase\SimulatorBase.csproj">
+    <ProjectReference Include="..\..\SimulatorBase\SimulatorBase.csproj">
       <Project>{18bc87c7-8cd5-4928-92ab-49db0e8ad096}</Project>
       <Name>SimulatorBase</Name>
     </ProjectReference>
